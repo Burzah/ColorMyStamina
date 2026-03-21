@@ -1,4 +1,13 @@
+--[[
+Title: Color My Stamina
+Author: Miles
+Date: 03/21/2026
+Repository: https://github.com/Burzah/ColorMyStamina
+Version: 1.0.0
+--]]
+
 local mod = get_mod("ColorMyStamina")
+mod.version = "1.0.0"
 
 local COLORS = {
     red     = {255, 255,   0,   0},
