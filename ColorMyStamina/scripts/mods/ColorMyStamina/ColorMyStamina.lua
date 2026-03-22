@@ -50,17 +50,20 @@ local function rebuild_cache()
     cached_default_color = cached_thresholds[#cached_thresholds].color
 end
 
-rebuild_cache()
-
 mod.on_setting_changed = function()
     rebuild_cache()
 end
 
 mod.on_all_mods_loaded = function()
+    rebuild_cache()
     mod:info(mod.version)
 end
 
 mod:hook("HudElementStamina", "_draw_stamina_chunks", function(func, self, dt, t, ui_renderer)
+    if not func then
+        return
+    end
+
     if not mod:is_enabled() then
         return func(self, dt, t, ui_renderer)
     end
