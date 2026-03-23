@@ -1,6 +1,7 @@
 local mod = get_mod("ColorMyStamina")
 
 local base_colors = {
+    { text = "color_default", value = "default"},
     { text = "color_red",     value = "red" },
     { text = "color_orange",  value = "orange" },
     { text = "color_yellow",  value = "yellow" },
