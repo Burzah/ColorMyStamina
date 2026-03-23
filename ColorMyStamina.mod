@@ -8,4 +8,5 @@ return {
             })
         end,
         package = "resource_packages/mods/ColorMyStamina/ColorMyStamina",
+        version = "1.0.0",
 }
