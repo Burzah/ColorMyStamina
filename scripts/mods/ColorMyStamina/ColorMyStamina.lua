@@ -106,10 +106,5 @@ mod:hook("HudElementStamina", "_draw_stamina_chunks", function(func, self, dt, t
         end
     end
 
-    if self._stamina_nodge_widget then
-        local nc = self._stamina_nodge_widget.style.nodges.color
-        nc[1], nc[2], nc[3], nc[4] = rgba[1], rgba[2], rgba[3], rgba[4]
-    end
-
     return func(self, dt, t, ui_renderer)
 end)
