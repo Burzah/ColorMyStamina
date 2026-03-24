@@ -14,7 +14,7 @@ return {
 	color_3 =         { en = "Third Color" },
 	color_4 =         { en = "Fourth Color" },
 	-- Available colors to choose
-	color_default =   { en =  "Vanilla" },
+	color_default =   { en =  "Default" },
 	color_red =       { en = "Red" },
 	color_orange =    { en = "Orange" },
 	color_yellow =    { en = "Yellow" },
