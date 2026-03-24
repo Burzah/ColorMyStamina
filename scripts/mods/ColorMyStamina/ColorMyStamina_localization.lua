@@ -2,10 +2,10 @@ return {
 	mod_name =        { en = "Color My Stamina" },
 	mod_description = { en = "Changes stamina bar colors based on percentage." },
 	-- Thresholds for changing bar colors
-	threshold_1 =     { en = "First Threshold (%%)" },
-	threshold_2 =     { en = "Second Threshold (%%)" },
-	threshold_3 =     { en = "Third Threshold (%%)" },
-	threshold_4 =     { en = "Fourth Threshold (%%)" },
+	threshold_1 =     { en = "Custom Point 1 (%%)" },
+	threshold_2 =     { en = "Custom Point 2 (%%)" },
+	threshold_3 =     { en = "Custom Point 3 (%%)" },
+	threshold_4 =     { en = "Custom Point 4 (%%)" },
 	-- Base color if all thresholds are set below 100
 	base_color = { en = "Base Bar Color" },
 	-- Color for each percentage
@@ -14,7 +14,7 @@ return {
 	color_3 =         { en = "Third Color" },
 	color_4 =         { en = "Fourth Color" },
 	-- Available colors to choose
-	color_default =   { en =  "Default" },
+	color_default =   { en = "Default" },
 	color_red =       { en = "Red" },
 	color_orange =    { en = "Orange" },
 	color_yellow =    { en = "Yellow" },
