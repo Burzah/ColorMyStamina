@@ -10,7 +10,7 @@ local mod = get_mod("ColorMyStamina")
 mod.version = "1.0.0"
 -- RGBA Values for Colors
 local COLORS = {
-    default = {255, 216, 229, 207},
+    original = {255, 216, 229, 207},
     red     = {255, 255,   0,   0},
     orange  = {255, 255, 165,   0},
     yellow  = {255, 255, 255,   0},
