@@ -6,13 +6,15 @@ return {
 	threshold_2 =     { en = "Second Threshold (%%)" },
 	threshold_3 =     { en = "Third Threshold (%%)" },
 	threshold_4 =     { en = "Fourth Threshold (%%)" },
+	-- Base color if all thresholds are set below 100
+	base_color = { en = "Base Bar Color" },
 	-- Color for each percentage
 	color_1 =         { en = "First Color" },
 	color_2 =         { en = "Second Color" },
 	color_3 =         { en = "Third Color" },
 	color_4 =         { en = "Fourth Color" },
 	-- Available colors to choose
-	color_default =   { en =  "Default" },
+	color_default =   { en =  "Vanilla" },
 	color_red =       { en = "Red" },
 	color_orange =    { en = "Orange" },
 	color_yellow =    { en = "Yellow" },

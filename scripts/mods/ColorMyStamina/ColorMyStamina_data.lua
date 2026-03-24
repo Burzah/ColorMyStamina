@@ -25,6 +25,7 @@ return {
     is_togglable = true,
     options = {
         widgets = {
+            { setting_id = "base_color",  type = "dropdown", default_value = "default", options = table.clone(base_colors) },
             { setting_id = "threshold_1", type = "numeric",  default_value = 25,  range = {0, 100} },
             { setting_id = "color_1",     type = "dropdown", default_value = "default", options = table.clone(base_colors) },
             { setting_id = "threshold_2", type = "numeric",  default_value = 50,  range = {0, 100} },

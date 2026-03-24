@@ -32,24 +32,29 @@ local cached_thresholds = {}
 local cached_default_color = "green"
 -- Rebuild and thresholds/color so we have it locally
 local function rebuild_cache()
+    -- Pull the starting color - if all thresholds are less than 100
+    local base_c = mod:get("base_color") or "default"
+
     local t1 = mod:get("threshold_1") or 25
     local t2 = mod:get("threshold_2") or 50
     local t3 = mod:get("threshold_3") or 75
     local t4 = mod:get("threshold_4") or 100
+
     local c1 = mod:get("color_1") or "red"
     local c2 = mod:get("color_2") or "orange"
     local c3 = mod:get("color_3") or "yellow"
     local c4 = mod:get("color_4") or "green"
--- Set values from cache
+
     cached_thresholds = {
         {value = t1, color = c1},
         {value = t2, color = c2},
         {value = t3, color = c3},
         {value = t4, color = c4},
     }
-    -- Sort added here to make sure transitions between thresholds are maintained properly
+    -- Sorts values no matter what order thresholds are set
     table.sort(cached_thresholds, function(a, b) return a.value < b.value end)
-    cached_default_color = cached_thresholds[#cached_thresholds].color
+    -- The bar defaults to this color if no threshold is met
+    cached_default_color = base_c
 end
 -- Rebuild cache if any of the mod settings are changed
 mod.on_setting_changed = function()
