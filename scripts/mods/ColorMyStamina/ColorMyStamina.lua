@@ -10,7 +10,18 @@ local mod = get_mod("ColorMyStamina")
 mod.version = "1.0.0"
 
 local cached_thresholds = {}
-local cached_default_color = "green"
+local cached_default_rgba = {255, 0, 255, 0}
+
+local function resolve_rgba(color_name)
+    local color_func = Color[color_name] or Color["green"]
+    local result = color_func(255, true)
+
+    if type(result) == "table" then
+        return {result[1] or 255, result[2] or 0, result[3] or 0, result[4] or 0}
+    end
+    local a, r, g, b = color_func(255, true)
+    return {a or 255, r or 0, g or 0, b or 0}
+end
 
 local function rebuild_cache()
     local base_c = mod:get("base_color") or "green"
@@ -26,14 +37,14 @@ local function rebuild_cache()
     local c4 = mod:get("color_4") or "red"
 
     cached_thresholds = {
-        {value = t1, color = c1},
-        {value = t2, color = c2},
-        {value = t3, color = c3},
-        {value = t4, color = c4},
+        {value = t1, rgba = resolve_rgba(c1)},
+        {value = t2, rgba = resolve_rgba(c2)},
+        {value = t3, rgba = resolve_rgba(c3)},
+        {value = t4, rgba = resolve_rgba(c4)},
     }
 
     table.sort(cached_thresholds, function(a, b) return a.value < b.value end)
-    cached_default_color = base_c
+    cached_default_rgba = resolve_rgba(base_c)
 end
 
 mod.on_setting_changed = function()
@@ -61,37 +72,32 @@ mod:hook("HudElementStamina", "_draw_stamina_chunks", function(func, self, dt, t
     if player_extensions then
         local player_unit_data = player_extensions.unit_data
         if player_unit_data then
-            local stamina_comp = player_unit_data:read_component("stamina")
-            stamina_fraction = stamina_comp and stamina_comp.current_fraction or stamina_fraction
+            local ok, stamina_comp = pcall(player_unit_data.read_component, player_unit_data, "stamina")
+            if ok and stamina_comp then
+                stamina_fraction = stamina_comp.current_fraction or stamina_fraction
+            end
         end
     end
 
     local percent = stamina_fraction * 100
-    local color_key = cached_default_color
+    local rgba = cached_default_rgba
 
     for i = 1, #cached_thresholds do
         if percent <= cached_thresholds[i].value then
-            color_key = cached_thresholds[i].color
+            rgba = cached_thresholds[i].rgba
             break
         end
-    end
-
-    local a, r, g, b
-    if Color[color_key] then
-        a, r, g, b = Color[color_key](255, true)
-    else
-        a, r, g, b = Color["green"](255, true)
     end
 
     local widget = self._widgets_by_name.stamina_bar
     if widget then
         if widget.style.bar_fill then
             local c = widget.style.bar_fill.color
-            c[1], c[2], c[3], c[4] = a, r, g, b
+            c[1], c[2], c[3], c[4] = rgba[1], rgba[2], rgba[3], rgba[4]
         end
         if widget.style.bar_spent then
             local sc = widget.style.bar_spent.color
-            sc[1], sc[2], sc[3], sc[4] = 150, r, g, b
+            sc[1], sc[2], sc[3], sc[4] = 150, rgba[2], rgba[3], rgba[4]
         end
     end
 
