@@ -23,13 +23,13 @@ local localizations = {
 	mod_description = { en = "Changes stamina bar colors based on percentage." },
 	base_color      = { en = "Base Bar Color" },
 	threshold_1     = { en = "Custom Point 1 (%%)" },
-	color_1         = { en = "First Color" },
+	color_1         = { en = "Color Point 1" },
 	threshold_2     = { en = "Custom Point 2 (%%)" },
-	color_2         = { en = "Second Color" },
+	color_2         = { en = "Color Point 2" },
 	threshold_3     = { en = "Custom Point 3 (%%)" },
-	color_3         = { en = "Third Color" },
+	color_3         = { en = "Color Point 3" },
 	threshold_4     = { en = "Custom Point 4 (%%)" },
-	color_4         = { en = "Fourth Color" },
+	color_4         = { en = "Color Point 4" },
 }
 
 for _, color_name in ipairs(Color.list) do
